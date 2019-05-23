@@ -3,6 +3,7 @@ from Helpers.data_loader import get_feature_dict, load_csv
 import numpy as np
 import os
 import csv
+import datetime
 
 smiles_data_path = 'Data/'
 
@@ -26,6 +27,7 @@ def get_jaccard_scores():
     for file in smi_files:
         if not file.endswith('.smi'):
             continue
+        print(datetime.datetime.now(), "Scoring file:", file)
         with open(smiles_data_path + file, "r") as csv_file:
             reader = csv.reader(csv_file, dialect='excel', delimiter=',')
             for row in reader:
