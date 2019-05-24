@@ -51,7 +51,9 @@ def split_multi_process():
     smi_files = []
 
     for file in all_files:
-        if not file.endswith('.smi') or file in processed_files:
+        if not file.endswith('.smi'):
+            continue
+        if [file] in processed_files:
             continue
         smi_files.append(file)
 
