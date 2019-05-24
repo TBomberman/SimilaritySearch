@@ -42,11 +42,18 @@ def get_jaccard_scores(file):
 def split_multi_process():
     print("Starting multiprocessing")
     all_files = os.listdir(smiles_data_path)
+
+    processed_files = []
+    if 'processed.txt' in all_files:
+        with open(smiles_data_path + 'processed.txt', newline='') as csvfile:
+            processed_files = list(csv.reader(csvfile))
+
     smi_files = []
 
     for file in all_files:
-        if file.endswith('.smi'):
-            smi_files.append(file)
+        if not file.endswith('.smi') or file in processed_files:
+            continue
+        smi_files.append(file)
 
     with closing(Pool(mp.cpu_count())) as pool:
         pool.map(get_jaccard_scores, smi_files)
