@@ -1,4 +1,3 @@
-from cmapPy.pandasGEXpress import parse
 import numpy as np
 import csv
 import datetime
